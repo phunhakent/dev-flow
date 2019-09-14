@@ -7,3 +7,11 @@ before_install:
 
 script:
   - docker run phunhakent/dev-flow npm run test -- --coverage
+
+deploy:
+  provider: heroku
+  api_key:
+    master:
+      secure: $HEROKU_DEPLOYMENT_KEY
+  app: 
+    master: phunhakent--dev-flow
