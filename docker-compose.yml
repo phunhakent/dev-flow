@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build:
+      # context: define current working (. for root or /react-app ...)
+      context: .
+      # dockerfile: use to specify dockerfile version
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  tests:
+    build:
+      # context: define current working (. for root or /react-app ...)
+      context: .
+      # dockerfile: use to specify dockerfile version
+      dockerfile: Dockerfile.dev
+    # don't need ports here, only need test results
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
